@@ -4,7 +4,7 @@ RUN apk update && apk add git
 ADD . /src
 WORKDIR /src
 ENV CGO_ENABLED=0
-RUN go build \
+RUN --mount=type=cache,target=/go/pkg/mod go build \
     -ldflags "-X github.com/jpillora/chisel/share.BuildVersion=$(git describe --abbrev=0 --tags)" \
     -o /tmp/bin
 # run stage
