@@ -6,17 +6,17 @@ import (
 	"sync/atomic"
 	"time"
 
-	chshare "github.com/jpillora/chisel/share"
-	"github.com/jpillora/chisel/share/cnet"
-	"github.com/jpillora/chisel/share/settings"
-	"github.com/jpillora/chisel/share/tunnel"
+	chshare "github.com/jpillora/chizzl/share"
+	"github.com/jpillora/chizzl/share/cnet"
+	"github.com/jpillora/chizzl/share/settings"
+	"github.com/jpillora/chizzl/share/tunnel"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/sync/errgroup"
 )
 
-// handleClientHandler is the main http websocket handler for the chisel server
+// handleClientHandler is the main http websocket handler for the chizzl server
 func (s *Server) handleClientHandler(w http.ResponseWriter, r *http.Request) {
-	//websockets upgrade AND has chisel prefix
+	//websockets upgrade AND has chizzl prefix
 	upgrade := strings.ToLower(r.Header.Get("Upgrade"))
 	protocol := r.Header.Get("Sec-WebSocket-Protocol")
 	if upgrade == "websocket" {
@@ -75,7 +75,7 @@ func (s *Server) handleWebsocket(w http.ResponseWriter, req *http.Request) {
 		user = u
 		s.sessions.Del(sid)
 	}
-	// chisel server handshake (reverse of client handshake)
+	// chizzl server handshake (reverse of client handshake)
 	// verify configuration
 	l.Debugf("Verifying configuration")
 	// wait for request, with timeout

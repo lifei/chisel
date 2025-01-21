@@ -71,8 +71,8 @@ func privateKey2PEM(privateKey *ecdsa.PrivateKey) ([]byte, error) {
 	return pem.EncodeToMemory(&pem.Block{Type: "EC PRIVATE KEY", Bytes: b}), nil
 }
 
-func chiselKey2PrivateKey(chiselKey []byte) (*ecdsa.PrivateKey, error) {
-	rawChiselKey := chiselKey[len(ChiselKeyPrefix):]
+func chizzlKey2PrivateKey(chizzlKey []byte) (*ecdsa.PrivateKey, error) {
+	rawChiselKey := chizzlKey[len(ChiselKeyPrefix):]
 
 	decodedPrivateKey := make([]byte, base64.RawStdEncoding.DecodedLen(len(rawChiselKey)))
 	_, err := base64.RawStdEncoding.Decode(decodedPrivateKey, rawChiselKey)
@@ -83,8 +83,8 @@ func chiselKey2PrivateKey(chiselKey []byte) (*ecdsa.PrivateKey, error) {
 	return x509.ParseECPrivateKey(decodedPrivateKey)
 }
 
-func ChiselKey2PEM(chiselKey []byte) ([]byte, error) {
-	privateKey, err := chiselKey2PrivateKey(chiselKey)
+func ChiselKey2PEM(chizzlKey []byte) ([]byte, error) {
+	privateKey, err := chizzlKey2PrivateKey(chizzlKey)
 	if err == nil {
 		return privateKey2PEM(privateKey)
 	}
@@ -92,6 +92,6 @@ func ChiselKey2PEM(chiselKey []byte) ([]byte, error) {
 	return nil, err
 }
 
-func IsChiselKey(chiselKey []byte) bool {
-	return strings.HasPrefix(string(chiselKey), ChiselKeyPrefix)
+func IsChiselKey(chizzlKey []byte) bool {
+	return strings.HasPrefix(string(chizzlKey), ChiselKeyPrefix)
 }

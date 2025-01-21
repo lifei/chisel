@@ -10,10 +10,10 @@ import (
 
 	"github.com/gorilla/websocket"
 	"github.com/jpillora/backoff"
-	chshare "github.com/jpillora/chisel/share"
-	"github.com/jpillora/chisel/share/cnet"
-	"github.com/jpillora/chisel/share/cos"
-	"github.com/jpillora/chisel/share/settings"
+	chshare "github.com/jpillora/chizzl/share"
+	"github.com/jpillora/chizzl/share/cnet"
+	"github.com/jpillora/chizzl/share/cos"
+	"github.com/jpillora/chizzl/share/settings"
 	"golang.org/x/crypto/ssh"
 )
 
@@ -64,7 +64,7 @@ func (c *Client) connectionLoop(ctx context.Context) error {
 	return nil
 }
 
-// connectionOnce connects to the chisel server and blocks
+// connectionOnce connects to the chizzl server and blocks
 func (c *Client) connectionOnce(ctx context.Context) (connected bool, err error) {
 	//already closed?
 	select {
@@ -109,7 +109,7 @@ func (c *Client) connectionOnce(ctx context.Context) (connected bool, err error)
 		return false, err
 	}
 	defer sshConn.Close()
-	// chisel client handshake (reverse of server handshake)
+	// chizzl client handshake (reverse of server handshake)
 	// send configuration
 	c.Debugf("Sending config")
 	t0 := time.Now()

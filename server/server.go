@@ -12,16 +12,16 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	chshare "github.com/jpillora/chisel/share"
-	"github.com/jpillora/chisel/share/ccrypto"
-	"github.com/jpillora/chisel/share/cio"
-	"github.com/jpillora/chisel/share/cnet"
-	"github.com/jpillora/chisel/share/settings"
+	chshare "github.com/jpillora/chizzl/share"
+	"github.com/jpillora/chizzl/share/ccrypto"
+	"github.com/jpillora/chizzl/share/cio"
+	"github.com/jpillora/chizzl/share/cnet"
+	"github.com/jpillora/chizzl/share/settings"
 	"github.com/jpillora/requestlog"
 	"golang.org/x/crypto/ssh"
 )
 
-// Config is the configuration for the chisel service
+// Config is the configuration for the chizzl service
 type Config struct {
 	KeySeed   string
 	KeyFile   string
@@ -35,7 +35,7 @@ type Config struct {
 	TLS       TLSConfig
 }
 
-// Server represents a chisel service
+// Server represents a chizzl service
 type Server struct {
 	*cio.Logger
 	config       *Config
@@ -54,7 +54,7 @@ var upgrader = websocket.Upgrader{
 	WriteBufferSize: settings.EnvInt("WS_BUFF_SIZE", 0),
 }
 
-// NewServer creates and returns a new chisel server
+// NewServer creates and returns a new chizzl server
 func NewServer(c *Config) (*Server, error) {
 	server := &Server{
 		config:     c,
@@ -144,7 +144,7 @@ func NewServer(c *Config) (*Server, error) {
 	return server, nil
 }
 
-// Run is responsible for starting the chisel service.
+// Run is responsible for starting the chizzl service.
 // Internally this calls Start then Wait.
 func (s *Server) Run(host, port string) error {
 	if err := s.Start(host, port); err != nil {

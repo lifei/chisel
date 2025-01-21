@@ -16,16 +16,16 @@ func GenerateKey(seed string) ([]byte, error) {
 
 // GenerateKeyFile generates an ChiselKey
 func GenerateKeyFile(keyFilePath, seed string) error {
-	chiselKey, err := seed2ChiselKey(seed)
+	chizzlKey, err := seed2ChiselKey(seed)
 	if err != nil {
 		return err
 	}
 
 	if keyFilePath == "-" {
-		fmt.Print(string(chiselKey))
+		fmt.Print(string(chizzlKey))
 		return nil
 	}
-	return os.WriteFile(keyFilePath, chiselKey, 0600)
+	return os.WriteFile(keyFilePath, chizzlKey, 0600)
 }
 
 // FingerprintKey calculates the SHA256 hash of an SSH public key
